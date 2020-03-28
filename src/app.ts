@@ -12,9 +12,8 @@ class App {
 
         this.middlewares(appInit.middleWares)
         this.routes(appInit.controllers)
-        var connectionURL = 'mongodb://127.0.0.1/torn_data';
-        mongoose.connect(connectionURL, { useNewUrlParser: true }).then(
-          () => console.log(`Succesfully connected to ${connectionURL}`),
+        mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true }).then(
+          () => console.log(`Succesfully connected to ${process.env.CONNECTION_URL}`),
           (err) => console.error("Connection error", err));
 
     }
