@@ -1,6 +1,8 @@
 import * as express from 'express'
 import { Application } from 'express'
 import * as mongoose from 'mongoose'
+import { factionJob } from './jobs/faction.job'
+
 
 class App {
     public app: Application
@@ -13,8 +15,12 @@ class App {
         this.middlewares(appInit.middleWares)
         this.routes(appInit.controllers)
         mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true }).then(
-          () => console.log(`Succesfully connected to ${process.env.CONNECTION_URL}`),
+          () => {
+            console.log(`Succesfully connected to ${process.env.CONNECTION_URL}`)
+            factionJob.start();
+          },
           (err) => console.error("Connection error", err));
+          
 
     }
 

@@ -1,6 +1,5 @@
 import App from './app'
 import * as bodyParser from 'body-parser'
-
 require('dotenv').config()
 
 const app = new App({
