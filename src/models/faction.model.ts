@@ -1,6 +1,14 @@
 import * as mongoose from 'mongoose'
 
-var factionBasicSchema = new mongoose.Schema({});
+var factionBasicSchema = new mongoose.Schema({
+  ID: Number,
+  name: String,
+  leader: Number,
+  "co-leader": Number,
+  respect: Number,
+  age: Number,
+  best_chain: Number
+});
 var factionTerritorySchema = new mongoose.Schema({});
 var factionChainSchema = new mongoose.Schema({});
 var factionCurrencySchema = new mongoose.Schema({});

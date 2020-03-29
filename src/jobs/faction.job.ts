@@ -3,7 +3,7 @@ import axios from 'axios'
 import { FactionBasic, FactionTerritory, FactionChain, FactionCurrency, FactionArmory } from '../models/faction.model';
 
 // '00 17 * * * *'
-export const factionJob = cron.schedule('*/10 * * * * *', async () => {
+export const factionJob = cron.schedule('00 17 * * * *', async () => {
 
   let factionData = [
     { id: process.env.PEEPSHOW_FACTION_ID, name: 'Peepshow', api_key: process.env.PEEPSHOW_API_KEY },
