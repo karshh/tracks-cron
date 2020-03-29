@@ -5,10 +5,12 @@ import { factionService } from '../services/faction.service';
 export class FactionController {
 
   @Get("")
-  async getAll(@Res() response: Response,
+  async getAll(@Res() response: any,
     @QueryParam("id") id: string,
-    @QueryParam("selections") selections: string) {
-    return await factionService.retrieveFactionBasic(id.split(',').map(value => +value));
-
+    @QueryParam("selection") selection: string) {
+    if (id == null || selection == null) return response.status(400).send({ code: "ID_SELECTION_MANDATORY" })
+    let idList = id.split(',');
+    if (idList.filter(v => isNaN(+v)).length > 0) return response.status(400).send({ code: "INVALID_ID_QUERY" });
+    return await factionService.retrieveFactionData(idList.map(value => +value), selection.split(','));
   }
 }
