@@ -1,8 +1,8 @@
 import * as cron from 'node-cron'
 import axios from 'axios'
-import { FactionBasic, FactionTerritory, FactionChain, FactionCurrency, FactionArmory } from '../models/faction.model';
+import { FactionBasic, FactionTerritory, FactionChain, FactionCurrency, FactionArmory, FactionStat } from '../models/faction.model';
 
-export const factionJob = cron.schedule('00 17 * * * *', async () => {
+export const factionJob = cron.schedule('00 27 * * * *', async () => {
 
   let factionData = [
     { id: process.env.PEEPSHOW_FACTION_ID, name: 'Peepshow', api_key: process.env.PEEPSHOW_API_KEY },
@@ -87,7 +87,7 @@ export const factionJob = cron.schedule('00 17 * * * *', async () => {
       "stats": response.data["stats"]
     }
 
-    FactionArmory.collection.insertOne(statData, _ => {
+    FactionStat.collection.insertOne(statData, _ => {
       console.log(`Inserted ${value.name} stats data into mongo.`);
     });
 
