@@ -2,7 +2,6 @@ import * as cron from 'node-cron'
 import axios from 'axios'
 import { FactionBasic, FactionTerritory, FactionChain, FactionCurrency, FactionArmory } from '../models/faction.model';
 
-// '00 17 * * * *'
 export const factionJob = cron.schedule('00 17 * * * *', async () => {
 
   let factionData = [
